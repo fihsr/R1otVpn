@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>RIOT VPN — быстрый старт</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #0b0b0f;
+            background-image: radial-gradient(circle at 25% 0%, #1f1f2e 0%, #040406 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 24px 16px 40px;
+            color: #ededef;
+        }
+
+        .app-container {
+            max-width: 440px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Анимации для появления блоков */
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+                filter: blur(5px);
+            }
+            60% {
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .animate-block {
+            opacity: 0; /* Изначально скрыты */
+            animation: floatIn 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
+        }
+
+        /* Задержки для последовательного появления */
+        .header {
+            animation-delay: 0.1s;
+        }
+        .features-card {
+            animation-delay: 0.2s;
+        }
+        .vless-highlight {
+            animation-delay: 0.3s;
+        }
+        .clients-support {
+            animation-delay: 0.4s;
+        }
+        .services-block {
+            animation-delay: 0.5s;
+        }
+        .tariffs-section {
+            animation-delay: 0.6s;
+        }
+        .footer-note {
+            animation-delay: 0.7s;
+        }
+
+        /* улучшенный хедер с неоновым отливом */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            margin-top: 10px;
+            border-bottom: 1px solid rgba(120, 120, 180, 0.25);
+            padding-bottom: 18px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: 3.5px;
+            background: linear-gradient(130deg, #ffffff, #b5b5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right i {
+            font-size: 2.2rem;
+            color: #c5c5ff;
+        }
+
+        /* глянцевые карточки */
+        .features-card {
+            background: rgba(18, 18, 24, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(160, 160, 220, 0.25);
+            border-radius: 40px;
+            padding: 24px 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(200, 200, 255, 0.1) inset;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #d5d5ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title i {
+            font-size: 1.8rem;
+            color: #aaaaff;
+            filter: drop-shadow(0 0 5px #5f5fd6);
+        }
+
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(10, 10, 18, 0.7);
+            padding: 14px 22px;
+            border-radius: 60px;
+            border: 1px solid rgba(180, 180, 250, 0.25);
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .feature-item:hover {
+            border-color: #7b7be0;
+            background: rgba(20, 20, 40, 0.7);
+        }
+
+        .feature-icon {
+            width: 40px;
+            text-align: center;
+            font-size: 1.7rem;
+            color: #d0d0ff;
+        }
+
+        .feature-text {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #f0f0ff;
+        }
+
+        /* блок VLESS (обновлён) */
+        .vless-highlight {
+            background: linear-gradient(105deg, #14141f 0%, #0d0d1a 100%);
+            border-radius: 38px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            border: 1px solid #3a3a70;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .vless-icon {
+            background: #1e1e3f;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #7b7be0;
+        }
+
+        .vless-icon i {
+            font-size: 2.6rem;
+            color: #b0b0ff;
+        }
+
+        .vless-text {
+            flex: 1;
+        }
+
+        .vless-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #c1c1ff, #a0a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .vless-text p {
+            font-size: 1rem;
+            color: #bdbde0;
+            font-weight: 300;
+        }
+
+        .vless-badge {
+            background: #212140;
+            border-radius: 40px;
+            padding: 6px 20px;
+            border: 1px solid #5a5ab5;
+            font-size: 0.9rem;
+            color: #cfcfff;
+        }
+
+        /* НОВЫЙ БЛОК: Поддержка клиентов (Hiddify, v2rayTun и др.) */
+        .clients-support {
+            background: rgba(18, 18, 28, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(170, 140, 250, 0.5);
+            border-radius: 42px;
+            padding: 26px 22px;
+            margin-bottom: 28px;
+            box-shadow: 0 15px 25px -12px #000, 0 0 0 1px rgba(255, 200, 255, 0.1) inset;
+        }
+
+        .clients-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            color: #ddddff;
+            text-transform: uppercase;
+        }
+        .clients-title i {
+            font-size: 1.8rem;
+            color: #b7b7ff;
+        }
+
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 18px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .client-item {
+            background: #1c1c30;
+            border-radius: 50px;
+            padding: 12px 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #54549b;
+            font-weight: 500;
+            color: #e2e2ff;
+            transition: 0.15s;
+            font-size: 1rem;
+        }
+
+        .client-item i {
+            font-size: 1.3rem;
+            color: #b7b7ff;
+        }
+
+        .client-item:hover {
+            border-color: #aaaaff;
+            background: #2a2a48;
+            box-shadow: 0 0 14px #5d5db0;
+        }
+
+        .client-note {
+            text-align: center;
+            color: #9f9fd6;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* сервисы — улучшенные иконки */
+        .services-block {
+            background: rgba(15, 15, 22, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 44px;
+            padding: 26px 20px;
+            margin: 24px 0 32px;
+            border: 1px solid rgba(140, 140, 230, 0.35);
+            box-shadow: 0 15px 25px -12px black;
+        }
+
+        .services-title {
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #dedeff;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .services-title i {
+            color: #a9a9ff;
+            font-size: 1.7rem;
+        }
+
+        .services-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px 24px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 72px;
+        }
+        .service i {
+            font-size: 2.4rem;
+            padding: 14px;
+            border-radius: 60px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #3d3d6b;
+            transition: 0.2s;
+            background: #12121c;
+        }
+        .service:hover i {
+            transform: scale(1.07);
+            border-color: #a0a0ff;
+            box-shadow: 0 0 16px #5a5acf;
+        }
+        .service span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #bcbce6;
+            text-transform: uppercase;
+        }
+        /* брендовые цвета с сохранением свечения */
+        .fa-youtube { background: #b91c1c !important; color: white; border-color: #ff4d4d; }
+        .fa-spotify { background: #1aa34a !important; color: black; border-color: #2ecc71; }
+        .fa-twitch { background: #5a2e9e !important; color: white; border-color: #aa7cff; }
+        .fa-discord { background: #404ecc !important; color: white; border-color: #8a9cff; }
+        .fa-telegram { background: #1f8bb1 !important; color: white; border-color: #6bc8ff; }
+        .fa-twitter { background: #187eb9 !important; color: white; border-color: #7ac7ff; }
+        .fa-tiktok { background: #121212 !important; color: white; border-color: #5af7e5; }
+
+        /* тарифы — премиум стиль */
+        .tariffs-section {
+            background: rgba(20, 20, 28, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            padding: 26px 22px;
+            border: 1px solid rgba(160, 160, 240, 0.5);
+            box-shadow: 0 20px 30px -10px #000, 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+        }
+        
+        .tariff-badge {
+            display: inline-block;
+            background: #23233b;
+            color: #e4e4ff;
+            padding: 6px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid #6b6bd0;
+        }
+        
+        .tariff-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(24, 24, 36, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 22px 24px;
+            border-radius: 44px;
+            border: 1px solid #3a3a68;
+            margin-bottom: 16px;
+            transition: 0.15s;
+        }
+        .tariff-card:hover {
+            border-color: #8d8dff;
+            background: rgba(35, 35, 55, 0.8);
+        }
+        
+        .tariff-left {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .tariff-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #f0f0ff;
+            letter-spacing: 0.5px;
+            background: linear-gradient(140deg, #ffffff, #ddddff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tariff-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        
+        .tariff-price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #9f9fd6;
+        }
+        
+        .tariff-speed {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            color: #c1c1f0;
+            font-size: 0.9rem;
+        }
+        
+        .tariff-cta {
+            background: #282842;
+            border: 1px solid #8d8dff;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 60px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 0 #11112b;
+            transition: 0.1s ease;
+            text-decoration: none;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+        .tariff-cta i {
+            font-size: 1rem;
+        }
+        .tariff-cta:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 #11112b;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a6a9e;
+            margin-top: 30px;
+            border-top: 1px solid #252545;
+            padding-top: 22px;
+            letter-spacing: 1px;
+        }
+        .footer-note i {
+            margin: 0 6px;
+            color: #7777cc;
+        }
+        .header-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;  /* Делает изображение круглым */
+            object-fit: cover;   /* Изменено с contain на cover - обрезает изображение по кругу */
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Шапка с неоновым замком (анимация) -->
+        <div class="header animate-block">
+            <h1>RIOT VPN</h1>
+            <div class="header-right">
+                <i class="fa fa-unlock-alt"></i>
+            </div>
+        </div>
+
+        <!-- Особенности (карточка) -->
+        <div class="features-card animate-block">
+            <div class="section-title">
+                <i class="fas fa-bolt"></i>
+                <span>особенности</span>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="feature-text">Быстрый, удобный, надежный</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                    <div class="feature-text">Пополнение звездами</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-gift"></i></div>
+                    <div class="feature-text">Раздачи промокодов</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <div class="feature-text">Подключение за 1 минуту</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок: VLESS -->
+        <div class="vless-highlight animate-block">
+            <div class="vless-icon">
+                <i class="fa fa-shield"></i>
+            </div>
+            <div class="vless-text">
+                <h3>VLESS</h3>
+            </div>
+            <span class="vless-badge"><i class="fas fa-check-circle" style="margin-right: 4px;"></i> xTLS / Vision</span>
+        </div>
+
+        <!-- НОВЫЙ БЛОК: Поддержка популярных клиентов (Hiddify, v2rayTun) -->
+        <div class="clients-support animate-block">
+            <div class="clients-title">
+                <i class="fas fa-cogs"></i>
+                <span>Совместимость</span>
+            </div>
+            <div class="clients-grid">
+                <span class="client-item"><i class="fas fa-bolt"></i> Hiddify</span>
+                <span class="client-item"><i class="fas fa-wifi"></i> v2rayTun</span>
+                <span class="client-item"><i class="fas fa-paper-plane"></i> Streisand</span>
+                <span class="client-item"><i class="fa fa-map-pin"></i> NekoBox</span>
+                <span class="client-item"><i class="fas fa-cloud"></i> MahsaNG</span>
+                <span class="client-item"><i class="fas fa-rss"></i> V2Box</span>
+            </div>
+            <div class="client-note">
+                <i class="fas fa-check-circle" style="color: #8b8bff;"></i> Работает с любыми клиентами, поддерживающими VLESS / XRAY
+            </div>
+            <div style="text-align: center; margin-top: 14px; background: rgba(80,80,180,0.15); border-radius: 60px; padding: 8px 16px; border: 1px dashed #6b6bb0;">
+                <i class="fas fa-download"></i> Активация по ссылке / подписке / QR-code
+            </div>
+        </div>
+
+        <!-- Сервисы после включения (TikTok + другие) -->
+        <div class="services-block animate-block">
+            <div class="services-title">
+                <i class="fas fa-globe"></i>
+                <span>доступные сервисы</span>
+            </div>
+            <div class="services-icons">
+                <div class="service"><i class="fab fa-youtube"></i><span>YouTube</span></div>
+                <div class="service"><i class="fab fa-spotify"></i><span>Spotify</span></div>
+                <div class="service"><i class="fab fa-twitch"></i><span>Twitch</span></div>
+                <div class="service"><i class="fab fa-discord"></i><span>Discord</span></div>
+                <div class="service"><i class="fab fa-telegram"></i><span>Telegram</span></div>
+                <div class="service"><i class="fab fa-twitter"></i><span>Twitter</span></div>
+                <div class="service"><i class="fab fa-tiktok"></i><span>TikTok</span></div>
+            </div>
+            <div style="text-align: center; margin-top: 18px; color: #9f9fd0; font-size: 0.95rem;">
+                <i class="fas fa-ellipsis-h"></i> Instagram, Netflix, ChatGPT и другие
+            </div>
+        </div>
+
+        <!-- Три тарифа с улучшенной типографикой -->
+        <div class="tariffs-section animate-block">
+            <div class="tariff-badge">
+                <i class="fas fa-crown" style="margin-right: 8px;"></i> ВЫБЕРИ ПЛАН
+            </div>
+            
+            <!-- Тариф 1: 139/мес -->
+            <div class="tariff-card">
+                <div class="tariff-left">
+                    <div class="tariff-name">FAST VPN</div>
+                    <div class="tariff-price">139 <small>₽/мес</small></div>
+                    <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с </div>
+                    <div class="tariff-speed"><i class="fa fa-desktop"></i> Кол-во устройств: 2</div>
+                </div>
+                <a href="https://t.me/R1otVPN_bot" class="tariff-cta" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-check"></i> ВЫБРАТЬ
+                </a>
+            </div>
+            
+            <!-- Тариф 2: 50/15 дней -->
+            <div class="tariff-card">
+                <div class="tariff-left">
+                    <div class="tariff-name">START VPN</div>
+                    <div class="tariff-price">50 <small>₽/15 дней</small></div>
+                    <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с </div>
+                    <div class="tariff-speed"><i class="fa fa-desktop"></i> Кол-во устройств: 1</div>
+                </div>
+                <a href="https://t.me/R1otVPN_bot" class="tariff-cta" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-check"></i> ВЫБРАТЬ
+                </a>
+            </div>
+            
+            <!-- Тариф 3: 249/мес (Family) -->
+            <div class="tariff-card">
+                <div class="tariff-left">
+                    <div class="tariff-name">FAMILY VPN</div>
+                    <div class="tariff-price">249 <small>₽/мес</small></div>
+                    <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с </div>
+                    <div class="tariff-speed"><i class="fa fa-desktop"></i> Кол-во устройств: 5</div>
+                </div>
+                <a href="https://t.me/R1otVPN_bot" class="tariff-cta" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-check"></i> ВЫБРАТЬ
+                </a>
+            </div>
+            
+            <div style="display: flex; gap: 16px; margin-top: 18px; justify-content: center; color: #8f8fc7; font-size: 0.9rem;">
+                <span><i class="fas fa-lock" style="margin-right: 4px;"></i> защита</span>
+                <span>⚡</span>
+                <span><i class="fas fa-headset"></i> поддержка</span>
+            </div>
+        </div>
+
+        <!-- подвал с акцентом на протокол -->
+        <div class="footer-note animate-block">
+            <i class="fas fa-lock"></i> RIOT VPN · VLESS · SECURE CORE <i class="fas fa-lock"></i>
+            
+        </div>
+        <div class="footer-note animate-block">
+            <i class="fa fa-terminal"></i> 2026 All rights reserved <i class=""></i>
+        </div>
+    </div>
+
+    <!-- скрипт для Telegram WebApp -->
+    <script>
+        (function() {
+            console.log('Riot VPN — Telegram WebApp (VLESS edition)');
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.ready();
+                Telegram.WebApp.expand();
+            }
+        })();
+    </script>
+</body>
+</html>
