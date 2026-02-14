@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>RIOT VPN</title>
-    <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,13 +14,13 @@
         }
 
         body {
-            background: #0a0a0a;      /* глубокий чёрный фон */
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             padding: 20px 12px 32px;
-            color: #e5e5e5;           /* мягкий белый для текста */
+            color: #e5e5e5;
         }
 
         .app-container {
@@ -30,16 +29,14 @@
             margin: 0 auto;
         }
 
-        /* плоские карточки, почти как native Telegram — без лишних теней, только тонкие границы */
         .block {
-            background: #1c1c1e;        /* единый тёмно-серый фон карточек (как в Telegram) */
+            background: #1c1c1e;
             border-radius: 22px;
             padding: 22px 20px;
             margin-bottom: 20px;
-            border: 1px solid #2c2c2e;   /* очень тонкая граница для отделения */
+            border: 1px solid #2c2c2e;
         }
 
-        /* заголовки секций — жирно, но без градиентов (ч/б стиль) */
         .section-title {
             display: flex;
             align-items: center;
@@ -47,21 +44,20 @@
             font-size: 1.35rem;
             font-weight: 600;
             margin-bottom: 20px;
-            color: #ffffff;              /* чисто белый */
+            color: #ffffff;
             letter-spacing: -0.2px;
         }
 
         .section-title i {
             font-size: 1.5rem;
-            color: #bbbbbb;               /* серый для иконок в заголовках */
+            color: #bbbbbb;
         }
 
-        /* особенности — плоские кнопки/пункты */
         .feature-item {
             display: flex;
             align-items: center;
             gap: 16px;
-            background: #262628;           /* чуть светлее блока */
+            background: #262628;
             padding: 14px 20px;
             border-radius: 18px;
             margin-bottom: 8px;
@@ -70,14 +66,14 @@
         }
 
         .feature-item:active {
-            background: #2f2f32;            /* легкий отклик при нажатии (telegram style) */
+            background: #2f2f32;
         }
 
         .feature-icon {
             width: 34px;
             text-align: center;
             font-size: 1.5rem;
-            color: #d0d0d0;                 /* серые иконки */
+            color: #d0d0d0;
         }
 
         .feature-text {
@@ -86,7 +82,6 @@
             color: #f0f0f0;
         }
 
-        /* блок VLESS — более приземлённый, без неона */
         .vless-block {
             background: #1c1c1e;
             border-radius: 22px;
@@ -112,7 +107,7 @@
 
         .vless-icon i {
             font-size: 2.4rem;
-            color: #cccccc;                 /* нейтральный серый */
+            color: #cccccc;
         }
 
         .vless-text h3 {
@@ -138,7 +133,6 @@
             font-weight: 500;
         }
 
-        /* клиенты — сетка тэгов, как в телеграм-каналах */
         .clients-grid {
             display: flex;
             flex-wrap: wrap;
@@ -162,7 +156,7 @@
 
         .client-tag i {
             font-size: 1.2rem;
-            color: #b0b0b0;                /* унифицированный серый для иконок */
+            color: #b0b0b0;
         }
 
         .client-note {
@@ -187,7 +181,6 @@
             font-size: 0.9rem;
         }
 
-        /* сервисы — цвета иконок оригинальные (НЕ МЕНЯЕМ) — только фон и текст остаются ч/б */
         .services-grid {
             display: flex;
             flex-wrap: wrap;
@@ -214,12 +207,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #1f1f1f;          /* нейтральный фон под иконку, но сам цвет иконки сохраняем */
+            background: #1f1f1f;
             border: 1px solid #3a3a3c;
             transition: 0.1s;
         }
 
-        /* цвета иконок сервисов — без изменений (оставлены как были) */
         .fa-youtube { color: #ff4d4d; background: #2a2a2a !important; }  
         .fa-spotify { color: #2ecc71; background: #2a2a2a !important; }  
         .fa-twitch { color: #aa7cff; background: #2a2a2a !important; }   
@@ -242,7 +234,6 @@
             margin-top: 12px;
         }
 
-        /* тарифы — плоские, строгие, без градиентов */
         .tariff-badge {
             display: inline-block;
             background: #262628;
@@ -269,7 +260,7 @@
         }
 
         .tariff-card:active {
-            background: #232325;   /* тактильный отклик */
+            background: #232325;
         }
 
         .tariff-left {
@@ -335,13 +326,19 @@
             padding-top: 20px;
         }
 
-        /* хедер минималистичный */
         .header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
             margin-bottom: 18px;
             padding-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .header h1 {
@@ -351,28 +348,81 @@
             letter-spacing: 1px;
         }
 
+        .header-gif {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1c1c1e;
+            border: 1px solid #3a3a3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-right {
+            margin-left: auto;
+        }
+
         .header-right i {
             font-size: 2rem;
             color: #b0b0b0;
         }
+        
+        .bottom-gif-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0 30px 0;
+            width: 100%;
+        }
+        
+        .bottom-gif {
+            width: 280px;
+            height: auto;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #1c1c1e;
+            border: 1px solid #3a3a3c;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bottom-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            display: block;
+        }
 
-        /* убираем анимации, добавляем простые появления (опционально) */
         .block, .vless-block, .header, .footer-note {
-            opacity: 1;  /* никаких исчезновений, сразу видно */
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Шапка — строго ч/б -->
         <div class="header">
-            <h1>RIOT VPN</h1>
+            <div class="header-left">
+                <h1>RIOT VPN</h1>
+            </div>
             <div class="header-right">
                 <i class="fa fa-unlock-alt"></i>
             </div>
         </div>
+        
+        <div class="bottom-gif-container">
+            <div class="bottom-gif">
+                <img src="gifka.gif" alt="Bottom GIF">
+            </div>
+        </div>
 
-        <!-- Особенности: плоские и серые -->
         <div class="block">
             <div class="section-title">
                 <i class="fas fa-bolt"></i>
@@ -396,7 +446,6 @@
             </div>
         </div>
 
-        <!-- VLESS (без излишеств) -->
         <div class="vless-block">
             <div class="vless-icon">
                 <i class="fa fa-shield"></i>
@@ -408,7 +457,6 @@
             <span class="vless-badge"><i class="fas fa-check-circle" style="margin-right: 4px;"></i> XRAY</span>
         </div>
 
-        <!-- Совместимость: клиенты (иконки серые, текст белый) -->
         <div class="block">
             <div class="section-title">
                 <i class="fas fa-cogs"></i>
@@ -430,7 +478,6 @@
             </div>
         </div>
 
-        <!-- Сервисы: цвета иконок сохранены полностью, фон карточки серый -->
         <div class="block">
             <div class="section-title">
                 <i class="fas fa-globe"></i>
@@ -450,13 +497,11 @@
             </div>
         </div>
 
-        <!-- Три тарифа — плоские, черно-белые (никаких градиентов) -->
         <div class="block">
             <div class="tariff-badge">
                 <i class="fas fa-crown" style="margin-right: 6px; color:#ccc;"></i> ВЫБЕРИ ПЛАН
             </div>
 
-            <!-- Тариф 1 -->
             <div class="tariff-card">
                 <div class="tariff-left">
                     <div class="tariff-name">FAST VPN</div>
@@ -468,7 +513,6 @@
                 </a>
             </div>
 
-            <!-- Тариф 2 -->
             <div class="tariff-card">
                 <div class="tariff-left">
                     <div class="tariff-name">START VPN</div>
@@ -480,7 +524,6 @@
                 </a>
             </div>
 
-            <!-- Тариф 3 -->
             <div class="tariff-card">
                 <div class="tariff-left">
                     <div class="tariff-name">FAMILY VPN</div>
@@ -492,7 +535,6 @@
                 </a>
             </div>
 
-            <!-- маленькие иконки защиты (серые) -->
             <div style="display: flex; gap: 18px; margin-top: 18px; justify-content: center; color: #8a8a8e; font-size: 0.85rem;">
                 <span><i class="fas fa-lock" style="color:#8e8e93;"></i> защита</span>
                 <span>⚡</span>
@@ -500,7 +542,6 @@
             </div>
         </div>
 
-        <!-- подвал — минимализм -->
         <div class="footer-note">
             <i class="fas fa-lock" style="color:#6c6c70;"></i> RIOT VPN · VLESS · SECURE CORE <i class="fas fa-lock" style="color:#6c6c70;"></i>
         </div>
@@ -509,7 +550,6 @@
         </div>
     </div>
 
-    <!-- скрипт Telegram (без изменений) -->
     <script>
         (function() {
             console.log('Riot VPN — telegram style');
