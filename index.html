@@ -14,7 +14,7 @@
         }
 
         body {
-            background: #0a0a0a;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -29,6 +29,245 @@
             margin: 0 auto;
         }
 
+        /* Анимация появления контента */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .block, .vless-block, .header, .footer-note, .tariff-card, .bottom-gif-container {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .block:nth-child(2) { animation-delay: 0.1s; }
+        .block:nth-child(3) { animation-delay: 0.2s; }
+        .block:nth-child(4) { animation-delay: 0.3s; }
+        .block:nth-child(5) { animation-delay: 0.4s; }
+        .block:nth-child(6) { animation-delay: 0.5s; }
+        .block:nth-child(7) { animation-delay: 0.6s; }
+
+        /* Анимация для букв заголовка */
+        .animated-title {
+            display: flex;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .animated-title span {
+            display: inline-block;
+            animation: letterPop 2s infinite;
+            transform-origin: center;
+        }
+
+        @keyframes letterPop {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255,255,255,0);
+            }
+            20% {
+                transform: scale(1.2);
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            }
+            40% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255,255,255,0);
+            }
+        }
+
+        /* Задержки для каждой буквы */
+        .animated-title span:nth-child(1) { animation-delay: 0s; }
+        .animated-title span:nth-child(2) { animation-delay: 0.1s; }
+        .animated-title span:nth-child(3) { animation-delay: 0.2s; }
+        .animated-title span:nth-child(4) { animation-delay: 0.3s; }
+        .animated-title span:nth-child(5) { animation-delay: 0.4s; }
+        .animated-title span:nth-child(6) { animation-delay: 0.5s; }
+        .animated-title span:nth-child(7) { animation-delay: 0.6s; }
+        .animated-title span:nth-child(8) { animation-delay: 0.7s; }
+
+        /* Анимация пульсации для иконок */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .header-right i {
+            animation: pulse 2s ease-in-out infinite;
+            font-size: 2rem;
+            color: #b0b0b0;
+        }
+
+        /* Анимация свечения для блоков при наведении */
+        .feature-item, .tariff-card, .client-tag {
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover, .tariff-card:hover, .client-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+            border-color: #4a4a4e;
+        }
+
+        /* Анимация вращения для иконки щита */
+        @keyframes shieldGlow {
+            0% {
+                filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 10px rgba(255,255,255,0.6));
+            }
+            100% {
+                filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+            }
+        }
+
+        .vless-icon i {
+            animation: shieldGlow 3s ease-in-out infinite;
+        }
+
+        /* Анимация для кнопок */
+        .tariff-cta {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tariff-cta:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .tariff-cta:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .tariff-cta:hover {
+            background: #3a3a3e;
+            transform: scale(1.02);
+        }
+
+        /* Анимация для сервисов */
+        .service-item {
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-item i {
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover i {
+            transform: rotate(360deg);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        /* Анимация появления для модального окна */
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-content {
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        /* Анимация для бейджа */
+        .vless-badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Анимация для гифки */
+        .bottom-gif {
+            transition: all 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bottom-gif:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Анимация для цены */
+        .tariff-price {
+            animation: priceGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes priceGlow {
+            0%, 100% {
+                text-shadow: 0 0 0 rgba(255,255,255,0);
+            }
+            50% {
+                text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            }
+        }
+
+        /* Анимация для заголовков секций */
+        .section-title i {
+            animation: iconSpin 4s linear infinite;
+        }
+
+        @keyframes iconSpin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Анимация для feature иконок */
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Остальные стили */
         .block {
             background: #1c1c1e;
             border-radius: 22px;
@@ -48,11 +287,6 @@
             letter-spacing: -0.2px;
         }
 
-        .section-title i {
-            font-size: 1.5rem;
-            color: #bbbbbb;
-        }
-
         .feature-item {
             display: flex;
             align-items: center;
@@ -62,18 +296,7 @@
             border-radius: 18px;
             margin-bottom: 8px;
             border: 1px solid #333335;
-            transition: 0.1s ease;
-        }
-
-        .feature-item:active {
-            background: #2f2f32;
-        }
-
-        .feature-icon {
-            width: 34px;
-            text-align: center;
-            font-size: 1.5rem;
-            color: #d0d0d0;
+            transition: all 0.3s ease;
         }
 
         .feature-text {
@@ -152,11 +375,15 @@
             font-weight: 500;
             color: #eaeaea;
             font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
         .client-tag i {
-            font-size: 1.2rem;
-            color: #b0b0b0;
+            transition: all 0.3s ease;
+        }
+
+        .client-tag:hover i {
+            transform: rotate(360deg);
         }
 
         .client-note {
@@ -209,7 +436,7 @@
             justify-content: center;
             background: #1f1f1f;
             border: 1px solid #3a3a3c;
-            transition: 0.1s;
+            transition: all 0.3s ease;
         }
 
         .fa-youtube { color: #ff4d4d; background: #2a2a2a !important; }  
@@ -256,11 +483,7 @@
             border-radius: 24px;
             border: 1px solid #2c2c2e;
             margin-bottom: 12px;
-            transition: 0.1s;
-        }
-
-        .tariff-card:active {
-            background: #232325;
+            transition: all 0.3s ease;
         }
 
         .tariff-left {
@@ -310,14 +533,12 @@
             align-items: center;
             gap: 6px;
             text-decoration: none;
-            transition: 0.1s;
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
             outline: none;
-        }
-
-        .tariff-cta:active {
-            background: #3a3a3e;
+            position: relative;
+            overflow: hidden;
         }
 
         .footer-note {
@@ -344,38 +565,8 @@
             gap: 10px;
         }
 
-        .header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        .header-gif {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #1c1c1e;
-            border: 1px solid #3a3a3c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-gif img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .header-right {
             margin-left: auto;
-        }
-
-        .header-right i {
-            font-size: 2rem;
-            color: #b0b0b0;
         }
         
         .bottom-gif-container {
@@ -418,7 +609,7 @@
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transition: 0.2s ease;
+            transition: all 0.3s ease;
             backdrop-filter: blur(4px);
         }
 
@@ -435,12 +626,6 @@
             width: 100%;
             border: 1px solid #3a3a3c;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            transform: scale(0.95);
-            transition: 0.2s ease;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
         }
 
         .modal-title {
@@ -451,11 +636,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .modal-title i {
-            color: #b0b0b0;
-            font-size: 1.8rem;
         }
 
         .instruction-step {
@@ -506,34 +686,14 @@
             text-align: center;
             cursor: pointer;
             margin-top: 12px;
-            transition: 0.1s;
+            transition: all 0.3s ease;
             border: none;
             outline: none;
         }
 
-        .modal-button:active {
+        .modal-button:hover {
             background: #3a3a3e;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #2c2c2e;
-            border: 1px solid #4a4a4e;
-            color: #ffffff;
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .block, .vless-block, .header, .footer-note {
-            opacity: 1;
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -541,7 +701,16 @@
     <div class="app-container">
         <div class="header">
             <div class="header-left">
-                <h1>RIOT VPN</h1>
+                <div class="animated-title">
+                    <span>R</span>
+                    <span>I</span>
+                    <span>O</span>
+                    <span>T</span>
+                    <span>&nbsp;</span>
+                    <span>V</span>
+                    <span>P</span>
+                    <span>N</span>
+                </div>
             </div>
             <div class="header-right">
                 <i class="fa fa-unlock-alt"></i>
@@ -647,7 +816,7 @@
             <div class="tariff-card">
                 <div class="tariff-left">
                     <div class="tariff-name">START VPN</div>
-                    <div class="tariff-price">99 <small>₽/мес</small></div>
+                    <div class="tariff-price">50 <small>₽/15 дней</small></div>
                     <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с · 1 устройство</div>
                 </div>
                 <button class="tariff-cta" onclick="showInstructions()">
@@ -734,7 +903,7 @@
         });
 
         (function() {
-            console.log('Riot VPN — telegram style');
+            console.log('Riot VPN — telegram style with animations');
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.ready();
                 Telegram.WebApp.expand();
