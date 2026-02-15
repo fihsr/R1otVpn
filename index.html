@@ -311,6 +311,9 @@
             gap: 6px;
             text-decoration: none;
             transition: 0.1s;
+            cursor: pointer;
+            border: none;
+            outline: none;
         }
 
         .tariff-cta:active {
@@ -399,6 +402,134 @@
             object-fit: cover;
             border-radius: 16px;
             display: block;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #1c1c1e;
+            border-radius: 32px;
+            padding: 28px 24px;
+            max-width: 380px;
+            width: 100%;
+            border: 1px solid #3a3a3c;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: 0.2s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-title i {
+            color: #b0b0b0;
+            font-size: 1.8rem;
+        }
+
+        .instruction-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #2c2c2e;
+            width: 36px;
+            height: 36px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffffff;
+            border: 1px solid #4a4a4e;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 1.1rem;
+            color: #e5e5e5;
+            line-height: 1.4;
+            padding-top: 6px;
+        }
+
+        .step-text small {
+            display: block;
+            color: #8e8e93;
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+
+        .modal-button {
+            background: #2c2c2e;
+            border: 1px solid #4a4a4e;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 16px 24px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+        }
+
+        .modal-button:active {
+            background: #3a3a3e;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #2c2c2e;
+            border: 1px solid #4a4a4e;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
         }
 
         .block, .vless-block, .header, .footer-note {
@@ -508,9 +639,9 @@
                     <div class="tariff-price">139 <small>₽/мес</small></div>
                     <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с · 2 устройства</div>
                 </div>
-                <a href="https://t.me/R1otVPN_bot" class="tariff-cta" target="_blank" rel="noopener noreferrer">
+                <button class="tariff-cta" onclick="showInstructions()">
                     <i class="fas fa-check"></i> ВЫБРАТЬ
-                </a>
+                </button>
             </div>
 
             <div class="tariff-card">
@@ -519,9 +650,9 @@
                     <div class="tariff-price">50 <small>₽/15 дней</small></div>
                     <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с · 1 устройство</div>
                 </div>
-                <a href="https://t.me/R1otVPN_bot" class="tariff-cta" target="_blank" rel="noopener noreferrer">
+                <button class="tariff-cta" onclick="showInstructions()">
                     <i class="fas fa-check"></i> ВЫБРАТЬ
-                </a>
+                </button>
             </div>
 
             <div class="tariff-card">
@@ -530,9 +661,9 @@
                     <div class="tariff-price">249 <small>₽/мес</small></div>
                     <div class="tariff-speed"><i class="fas fa-rocket"></i> до 500 Мбит/с · 5 устройств</div>
                 </div>
-                <a href="https://t.me/R1otVPN_bot" class="tariff-cta" target="_blank" rel="noopener noreferrer">
+                <button class="tariff-cta" onclick="showInstructions()">
                     <i class="fas fa-check"></i> ВЫБРАТЬ
-                </a>
+                </button>
             </div>
 
             <div style="display: flex; gap: 18px; margin-top: 18px; justify-content: center; color: #8a8a8e; font-size: 0.85rem;">
@@ -550,7 +681,58 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="instructionModal">
+        <div class="modal-content">
+            <div class="modal-title">
+                <i class="fas fa-shopping-cart"></i> Как купить
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">1</div>
+                <div class="step-text">Напишите боту <strong>@R1otVPN_bot</strong><br><small>Нажмите /start</small></div>
+            </div>
+
+            <div class="instruction-step">
+                <div class="step-number">2</div>
+                <div class="step-text">Пополните баланс<br><small>Звезды или промокод</small></div>
+            </div>
+
+            <div class="instruction-step">
+                <div class="step-number">3</div>
+                <div class="step-text">Нажмите Купить VPN<br><small>Выберите тариф</small></div>
+            </div>
+
+            <div class="instruction-step">
+                <div class="step-number">4</div>
+                <div class="step-text">Получите ссылку<br><small>Вставьте в v2RayTun, все!</small></div>
+            </div>
+
+            <button class="modal-button" onclick="openBot()">
+                <i class="fab fa-telegram"></i> Перейти в бота
+            </button>
+        </div>
+    </div>
+
     <script>
+        function showInstructions() {
+            document.getElementById('instructionModal').classList.add('active');
+        }
+
+        function hideInstructions() {
+            document.getElementById('instructionModal').classList.remove('active');
+        }
+
+        function openBot() {
+            window.location.href = 'https://t.me/R1otVPN_bot';
+            hideInstructions();
+        }
+
+        document.getElementById('instructionModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideInstructions();
+            }
+        });
+
         (function() {
             console.log('Riot VPN — telegram style');
             if (window.Telegram && Telegram.WebApp) {
