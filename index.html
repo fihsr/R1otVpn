@@ -33,39 +33,25 @@ body{background:#0a0a0d;min-height:100vh;display:flex;justify-content:center;ali
 .twitter{background:#1DA1F2}
 .twitch{background:#9146FF}
 .instagram{background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5)}
-.tariff{background:#1a1a26;border-radius:22px;padding:16px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.06);animation:fadeUp 1.2s ease;cursor:pointer;transition:0.3s}
-.tariff:hover{transform:scale(1.02);background:#222230}
+.tariff{background:#1a1a26;border-radius:22px;padding:16px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.06);animation:fadeUp 1.2s ease}
 .tariff-name{font-weight:700;font-size:16px}
 .tariff-info{font-size:13px;color:#a6a6d6;margin-top:4px}
 .footer{text-align:center;font-size:12px;color:#6c6ca6;margin-top:12px}
 .gif-box{display:flex;justify-content:center;margin-bottom:16px;animation:bounce 2s infinite}
 .gif-box img{width:120px;height:120px;border-radius:18px;object-fit:cover}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.side-menu{position:absolute;top:0;right:-100%;width:100%;height:100%;background:#0f0f18;padding:26px 18px;transition:0.35s;z-index:20;overflow-y:auto}
+.side-menu{position:absolute;top:0;right:-100%;width:100%;height:100%;background:#0f0f18;padding:26px 18px;transition:0.35s;z-index:20}
 .side-menu.active{right:0}
 .menu-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .menu-back{background:#1b1b28;padding:10px 14px;border-radius:12px;cursor:pointer;font-size:14px}
 .menu-title{font-size:20px;font-weight:600}
 .menu-btn{display:flex;align-items:center;gap:12px;background:#1b1b28;padding:16px;border-radius:14px;margin-bottom:14px;font-size:15px;cursor:pointer;border:1px solid rgba(255,255,255,0.05);transition:0.3s}
 .menu-btn:hover{transform:scale(1.05)}
-.popup{position:absolute;top:0;left:0;width:100%;height:100%;background:#0e0e17;z-index:30;padding:24px;display:none;flex-direction:column;animation:fadeIn 0.5s ease;overflow-y:auto}
+.popup{position:absolute;top:0;left:0;width:100%;height:100%;background:#0e0e17;z-index:30;padding:24px;display:none;flex-direction:column;animation:fadeIn 0.5s ease}
 .popup.active{display:flex}
 .popup-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .popup-back{background:#1b1b28;padding:10px 14px;border-radius:12px;cursor:pointer;font-size:14px}
 .popup-title{font-size:20px}
-.balance-badge{background:#1e1e2a;padding:8px 15px;border-radius:30px;font-size:14px;font-weight:600}
-.balance-badge i{margin-right:5px;color:#f4b942}
-.btn{background:#2a2a3a;border:none;color:white;padding:12px 20px;border-radius:30px;font-size:16px;font-weight:600;cursor:pointer;transition:0.3s;width:100%;margin-bottom:10px}
-.btn-primary{background:#6c5ce7}
-.btn-success{background:#00b894}
-.btn-danger{background:#d63031}
-.btn:hover{transform:scale(1.02);opacity:0.9}
-.input-field{background:#1e1e2a;border:1px solid #2a2a3a;border-radius:30px;padding:15px;color:white;font-size:16px;width:100%;margin-bottom:15px}
-.config-link{background:#0a0a12;padding:15px;border-radius:15px;font-size:12px;word-break:break-all;margin:15px 0;border:1px solid #2a2a3a}
-.status-badge{padding:5px 10px;border-radius:20px;font-size:12px;font-weight:600}
-.status-active{background:#00b89420;color:#00b894;border:1px solid #00b894}
-.status-inactive{background:#d6303120;color:#d63031;border:1px solid #d63031}
-.status-expired{background:#6c5ce720;color:#6c5ce7;border:1px solid #6c5ce7}
 </style>
 </head>
 <body>
@@ -73,14 +59,10 @@ body{background:#0a0a0d;min-height:100vh;display:flex;justify-content:center;ali
 <div class="side-menu" id="menu">
 <div class="menu-header">
 <div class="menu-back" onclick="toggleMenu()">Назад</div>
-<div class="menu-title">Меню</div>
+<div class="menu-title">Настройки</div>
 </div>
-<div class="menu-btn" onclick="openSection('profile')"><i class="fa fa-user"></i>Личный кабинет</div>
-<div class="menu-btn" onclick="openSection('deposit')"><i class="fa fa-credit-card"></i>Пополнить баланс</div>
-<div class="menu-btn" onclick="openSection('plans')"><i class="fa fa-shopping-cart"></i>Купить VPN</div>
-<div class="menu-btn" onclick="openSection('myVpn')"><i class="fa fa-list"></i>Мои VPN</div>
-<div class="menu-btn" onclick="openSection('about')"><i class="fa fa-info-circle"></i>О нас</div>
 <div class="menu-btn" onclick="openPopup('connect')"><i class="fa fa-link"></i>Как подключить</div>
+<div class="menu-btn" onclick="openPopup('params')"><i class="fa fa-gear"></i>Параметры</div>
 <div class="menu-btn" onclick="openPopup('support')"><i class="fa fa-headset"></i>Поддержка</div>
 </div>
 
@@ -91,10 +73,18 @@ body{background:#0a0a0d;min-height:100vh;display:flex;justify-content:center;ali
 </div>
 <div style="font-size:14px;line-height:1.5;color:#cfcfff">
 1. Скопируйте ссылку подключения<br><br>
-2. Откройте клиент (Hiddify / v2rayTun / Shadowrocket / NordVPN)<br><br>
+2. Откройте клиент (Hiddify / v2rayTun)<br><br>
 3. Вставьте ссылку<br><br>
 4. Нажмите подключить
 </div>
+</div>
+
+<div class="popup" id="popup-params">
+<div class="popup-header">
+<div class="popup-back" onclick="closePopup()">Назад</div>
+<div class="popup-title">Параметры</div>
+</div>
+<div style="color:#8a8abf">Пока пусто</div>
 </div>
 
 <div class="popup" id="popup-support">
@@ -102,125 +92,17 @@ body{background:#0a0a0d;min-height:100vh;display:flex;justify-content:center;ali
 <div class="popup-back" onclick="closePopup()">Назад</div>
 <div class="popup-title">Поддержка</div>
 </div>
-<div style="font-size:16px;color:#cfcfff;margin-bottom:20px">@r111otsup - связь с администратором</div>
-<button class="btn btn-primary" onclick="Telegram.WebApp.openTelegramLink('https://t.me/r111otsup')">Написать в Telegram</button>
-</div>
-
-<div class="popup" id="popup-profile">
-<div class="popup-header">
-<div class="popup-back" onclick="closePopup()">Назад</div>
-<div class="popup-title">Личный кабинет</div>
-</div>
-<div id="profileContent">
-<div style="background:#1a1a26;border-radius:20px;padding:20px;margin-bottom:15px">
-<div style="font-size:14px;color:#9a9acb;margin-bottom:10px">Ваш ID: <span id="userId">-</span></div>
-<div style="font-size:14px;color:#9a9acb;margin-bottom:10px">Имя: <span id="userName">-</span></div>
-<div style="font-size:24px;font-weight:700;margin-bottom:5px"><span id="userBalance">0</span>₽</div>
-<div style="color:#9a9acb">Текущий баланс</div>
-</div>
-<div style="background:#1a1a26;border-radius:20px;padding:20px">
-<div style="font-size:14px;color:#9a9acb;margin-bottom:10px">Активных VPN: <span id="activeCount">0</span></div>
-</div>
-</div>
-</div>
-
-<div class="popup" id="popup-deposit">
-<div class="popup-header">
-<div class="popup-back" onclick="closePopup()">Назад</div>
-<div class="popup-title">Пополнить баланс</div>
-</div>
-<div style="background:#1a1a26;border-radius:20px;padding:20px;margin-bottom:15px">
-<div style="font-size:14px;color:#9a9acb;margin-bottom:5px">Текущий баланс</div>
-<div style="font-size:32px;font-weight:700"><span id="depositBalance">0</span>₽</div>
-</div>
-<button class="btn btn-primary" onclick="showStarsInput()"><i class="fa-brands fa-telegram"></i> Telegram Stars</button>
-<button class="btn" onclick="showPromoInput()"><i class="fa fa-gift"></i> Ввести промокод</button>
-<div id="starsInput" style="display:none;margin-top:15px">
-<input type="number" id="starsAmount" class="input-field" placeholder="Сумма в рублях (мин. 10₽)" min="10">
-<div style="color:#9a9acb;font-size:12px;margin-bottom:10px">Курс: 1 ⭐ = 1.7₽</div>
-<button class="btn btn-success" onclick="processStarsPayment()">Оплатить Stars</button>
-<button class="btn" onclick="hidePaymentInputs()">Отмена</button>
-</div>
-<div id="promoInput" style="display:none;margin-top:15px">
-<input type="text" id="promoCode" class="input-field" placeholder="Введите промокод">
-<button class="btn btn-success" onclick="activatePromo()">Активировать</button>
-<button class="btn" onclick="hidePaymentInputs()">Отмена</button>
-</div>
-</div>
-
-<div class="popup" id="popup-plans">
-<div class="popup-header">
-<div class="popup-back" onclick="closePopup()">Назад</div>
-<div class="popup-title">Выберите тариф</div>
-</div>
-<div style="background:#1a1a26;border-radius:20px;padding:20px;margin-bottom:15px">
-<div style="font-size:14px;color:#9a9acb;margin-bottom:5px">Ваш баланс</div>
-<div style="font-size:24px;font-weight:700"><span id="plansBalance">0</span>₽</div>
-</div>
-<div class="tariff" onclick="selectPlan('start')">
-<div class="tariff-name">🚀 START VPN - 99₽/мес</div>
-<div class="tariff-info">Сервер: Автоподбор · 1 устройство</div>
-</div>
-<div class="tariff" onclick="selectPlan('france')">
-<div class="tariff-name">⚡ FAST VPN - 139₽/мес</div>
-<div class="tariff-info">Сервер: Автоподбор · 2 устройства</div>
-</div>
-<div class="tariff" onclick="selectPlan('family')">
-<div class="tariff-name">👨‍👩‍👧‍👦 FAMILY VPN - 249₽/мес</div>
-<div class="tariff-info">Сервер: Автоподбор · 5 устройств</div>
-</div>
-</div>
-
-<div class="popup" id="popup-myVpn">
-<div class="popup-header">
-<div class="popup-back" onclick="closePopup()">Назад</div>
-<div class="popup-title">Мои VPN</div>
-</div>
-<div id="subscriptionsList"></div>
-</div>
-
-<div class="popup" id="popup-subscription">
-<div class="popup-header">
-<div class="popup-back" onclick="openSection('myVpn')">Назад</div>
-<div class="popup-title" id="subPlanName">Управление VPN</div>
-</div>
-<div id="subscriptionDetail"></div>
-</div>
-
-<div class="popup" id="popup-about">
-<div class="popup-header">
-<div class="popup-back" onclick="closePopup()">Назад</div>
-<div class="popup-title">О нас</div>
-</div>
-<div style="background:#1a1a26;border-radius:20px;padding:20px">
-<p style="margin-bottom:15px;color:#cfcfff">🔒 Riot VPN - безопасный VPN сервис</p>
-<p style="margin-bottom:10px;color:#9a9acb">📌 Особенности:</p>
-<ul style="list-style:none;color:#cfcfff">
-<li style="margin-bottom:8px">• Высокая скорость</li>
-<li style="margin-bottom:8px">• Защита данных</li>
-<li style="margin-bottom:8px">• Без логирования</li>
-<li style="margin-bottom:8px">• Поддержка всех устройств</li>
-<li style="margin-bottom:8px">• Протокол VLESS Reality</li>
-</ul>
-</div>
+<div style="font-size:16px">@r111otsup</div>
 </div>
 
 <div class="top-bar">
-<div class="top-icon" onclick="openSection('profile')"><i class="fa fa-user"></i></div>
+<div class="top-icon"><i class="fa fa-unlock"></i></div>
 <div class="app-title">Riot</div>
-<div class="top-icon" onclick="toggleMenu()"><i class="fa fa-bars"></i></div>
+<div class="top-icon" onclick="toggleMenu()"><i class="fa fa-gear"></i></div>
 </div>
 
 <div class="gif-box">
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2Q3YzU4Zjg3YzU4Zjg3YzU4Zjg3YzU4Zjg3YzU4Zjg3YzU4Zjg3YzU4Zg/l0MYt5jH6gkTWm8qo/giphy.gif">
-</div>
-
-<div class="block">
-<div class="block-title">Баланс</div>
-<div style="display:flex;justify-content:space-between;align-items:center">
-<div><span style="font-size:24px;font-weight:700" id="mainBalance">0</span>₽</div>
-<div class="balance-badge" onclick="openSection('deposit')"><i class="fa fa-plus-circle"></i> Пополнить</div>
-</div>
+<img src="gifka.gif">
 </div>
 
 <div class="block">
@@ -242,32 +124,34 @@ body{background:#0a0a0d;min-height:100vh;display:flex;justify-content:center;ali
 <a class="service" href="https://twitter.com" target="_blank"><i class="fab fa-twitter twitter"></i>Twitter</a>
 <a class="service" href="https://twitch.tv" target="_blank"><i class="fab fa-twitch twitch"></i>Twitch</a>
 <a class="service" href="https://instagram.com" target="_blank"><i class="fab fa-instagram instagram"></i>Instagram</a>
+<a class="service" href="#" style="cursor:default"><i class="fa fa-ellipsis-h" style="background:#171722"></i>и другие сервисы</a>
 </div>
 </div>
 
 <div class="block">
 <div class="block-title">Поддерживаемые клиенты</div>
 <div class="clients-grid">
-<a class="client" href="https://v2raytun.com" target="_blank"><img src="data:image/png;base64,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" alt="v2rayTun"></a>
+<a class="client" href="https://v2raytun.com" target="_blank"><img src="data:image/png;base64,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" alt="v2rayTun"></a>
 <a class="client" href="https://hiddify.net/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAjVBMVEXy9PtFX+nz9fs+Wen9/vxmfe37/PxGYOnq7vsvUOg2U+ips/KRn/D2+PwuTufR1vcwVujd4vp9ke5BXOlSaOro7PvP1Pe2vvQpSufh5fmfq/IlSedtguy6w/XY3PlqfuyYpPHGzPZjd+tbcuunsvKMme96j++vufRLZOlWbOoeROd0h+6ZpfDAyPWBj+15LQoqAAAEfklEQVR4nO3d63aiShCGYWhMcZBCEjSeTdSYRGcy9395g3v2iqB0Z4a9dFM13/sziyhPmoXQAvE8ozzPeLqDUH4Qyg9C+UEoPwjlB6H8IJQfhPKDUH4Qyg9C+UEoPwjlB6H8IJQfhPKDUH4Qyg9C+UEoPwjlB6H8IJQfhPKDUH4Qyg9C+UEoPwlCw8zt11KAkKL1+NHjtr/eeSHzeJgkyWbalthxoemtnuLC9/08bLui3RZStIsD/1iYzVoOYpeFTG9B4v9b8NRr9yrdFZYb6HbufxbcKROacgOdBKFeIZvle+xX0yU0NFjERahXSF6aBP5ZioTlR/xpD6pQaGi1nVz69AjLPWgWhHqFTI0bqB4hr+4mReMAKhHSR968gWoRmigsrD4VQlpO7COoQ/gSO4AqhH0I270uhLcLQnHCi1leZULmx7d1fZZXldDQ43aezYs1VX6oSUjRQ3mKFIZFNqiMIvUzJUL2PmdB80VlEGntOmoLk5Tsr+nq1kKmx83nJFMRRqd3N7zJrcRyvNt+cXFjIY12tUmmitDj6X6eW8qydcshvK2QqV/ktbGpCj024wdLL6O2wFsKyz3o8HySKaq/O/cskYRvSGn0Or84h4+u/+63EjK/JcnljkSN8LgHbfy0UyI0NN3FzZNMZ0LHIzrbv/v1hWze3m2zoHUhmXtLXvtdzdWFprfax9ZJtJqQxsPA0nvamnhtIUevB8ckYVVIM8eSk21HP/F5WjTsQRuFPHWdW4TzcTeP2mjhBFaFNHbPl37r5LmFe1zOhCLnS3mQOYewJhR5BgwhhBD+ThD+tyCEsHNCw2fHjsqEhrz1gGunAKqEhqJ0cjgkyypRk5B5GcZ+GBbzKlGP0PTuF9mvufpiX3lFNULy0tNMU7I67W6UCMsNdF9ZuWSgTHi85yOpzq9oE5LZTepXLOsSMi2z86lQTUJDq8X84oJQRUKKvjddEKpGWO5Bm+fqlQiPG2jWfMWyDmH5EZ9f3POhSdhb+rYvk3QI6fXgWBUFQuofXKutQTh0XVOvQGi83LUmEEIIIYQQQgjh3yEUP5v4pbAy6U1LjcLg6fNmGMMb5yGsUGEYp0x8jDiN3UMoU+j78dNyULZa3n0FlCoMg+RXjluzZQv/IAgh/P+ExTHFwrwYHiu+/lPIFBbJ9/vRsfvn/KtxlCksD9v4n3skmMb2iWPBwvzhdFzae/3iryFSmFTuFKS1xiPvv+DsSf8ZMIQQQihX2Jm7gq73adGZp0bQ3nm0WVQefmBGzsO2YFN9LobzqRF+srvdUyP4w/U1flZ7fgWlroGZf1SWNbx1bBxFPG154U+rKxVmibX4R+0Fjfcjti/8Ur8ofLq1LhsXt31qBK1maXPP67MnBxleP1uWna3OVpqjsWXRtN/6geUtrxhisnWxIuZKy/523XkS1rWCUH4Qyg9C+UEoPwjlB6H8IJQfhPKDUH4Qyg9C+UEoPwjlB6H8IJQfhPKDUH4Qyg9C+UEoPwjlB6H8IJQfhPKDUH4Qyg9C+UEoP+P4r4pK+gm4j23zFO1lbQAAAABJRU5ErkJggg==" alt="Hiddify"></a>
-<a class="client" href="https://shadowlaunch.com" target="_blank"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxANDQ0ODw0ODg4ODQ0PEA4PDw8QEA4QFxIWFhYRFRMYHjQhGSYlGxMTITEhJSo3Ljo6Fx8zOTQsQyguLisBCgoKDg0OGxAQGi0lHyUtLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAMgAyAMBEQACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAAAQUGBAMHAv/EAEEQAAIBAgMDBwgGCAAAAwAAAAABAgMRBAUSITEGQVFSYZGS0RMiQlNxocHRFDJicoKx8CMkM0NU4fE0Q5Oy/8QAGgEBAAMBAQEAAAAAAAAAAAAAAQIDBAUGB//EADIRAAIBAgQDBgYDAQEBAQAAAAABAgMRBBIhMRNBUQUUYXGR8CKBobHB0eEyM/EiQlL/2gAMAwEAAhEDEQA/APuIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAeV4cL5xT7j+P7l5/dnLT5mlb++5/wCT95/X+zb5Z3yH+V/FmPav8jTsv8H+jWmB0gAAAAAAAAAAAAAAAAAAAAAAABAPDy2nlE+VlbU21KSum22k7es68NTjOLzHNjq04SjkevuTl9Gm4uUYK7i1J22e9aTlrQcHfQ5pYqra1/c2OQ/2K9UfxZy9pfn7HZ2X+D6v8A02RwncAAAAAAAAAAAAAAAAAAAAAAIBw5pVjTo1JSWpKL93X9o3oU3UnZHPiqypU7s+c4XKeUVatWpSpKpTlPUnKdFbS2PZz+B6tTEU6cVFvY8WOGqVZuaW5u8gwuNwtqden5ODdrqrGVm+fY4nycTiKVT4qbsz0cNh61L4ai0L/H/wCjqPqS+44sP8AZHqjsr0n1R2HRk5nTxzAAAAAAAAAAAAAAAAAAAAACARJ6Vd7Jav4Idt2Q2krsw2d8qKcY6aDUm9nPRZR7Vr5z1cP2Y5P8A6+R5GJ7Sil8G5gMZjamJqOc5t7vSrtqKfMkeloefKTk7tmh5MZzOElh5u8ZPzLvZSe2y7H8Tzsbg1bPDc9PB4x3yT2NpmM1GhJv1WvvOOhG9RHo4iVqZ8l/1A9Df1c/wAT08P/AKweHjv9b9vqea2Oo4gAAAAAAAAAAAAAAAAAAAAABw5pi4YahUq1NoqL0rrvovadGHoyqTUUYYmtGlByl9T4lmmNqYqrKrUbbk3ZObkortbPfUYwWVP3PmJTlN5pG08m8jzrU4WcuSd7WvfYy7yprLHU1j2dUvmexzZFlUcPi41nLajVvDbZvS9vUZ1cTng4+bNMPh3TqKXmfeGel4h8z5WZfT/wA/xMqP+s9LE/4e5Wcvv7nD/qK3+TPqxd3Yy/vmP8Tlxv8AnE8y4kccAAAAAAAAAAAAAAAAAAAAAAD5h/wBEx/w6UfWyb9yS/ee32R9b9DyO1f6pHnPI6lGWN1N2caUmvW2j0J/2PMp7nq8M5YyvmhPS0/YTQqRlU0xtsexiKbg7s+q8jM/li6UaNaWqtFLTKW2uH2u2J4OOp5JZo7M9bAVc8Mst0epy19GPa2c+B3Z09o7R9zI8vf7nD/qK3+Xh2P9Sd3Yz/vmP8Tlxv8AnE8y4kccAAAAAAAAAAAAAAAAAAAAAADwM+5N0sdJTlKcJpWvGz08y0t7W63id2Gx0qKskmcWIwUa0rttFHg+R2Hw7jLzqkotNOVlFd1v3nRU7RqTVtEctPs6lB31Z6ObZRhcXTjCrBSUfRaaafSnv8TnpV50pXi7HRVw8Kscs1dGejyaweFqU6kacVZ2k3G+lNNaNtztidU8dVmmn5I55dno9HNMsUcY1B1k06abTW3Py2Rj2bSUqrv4E9pVJRpK3iZbl5VjHD0aaacp1U0ltaik78z5yM6Mk8W/I8epriF5nlGpzgAAAAAAAAAAAAAAAAAAAAAAAUYAAAAAABBU5nNUsM5QpUZzqSajz8/NZd51YTCKrL4nZf8OfF4p0Y/Crs+fZlmtXFPz3aN7qCeyfcetChCmrL3zPFqV6lV/FL2j/9k=" alt="Shadowrocket"></a>
+<a class="client" href="https://shadowlaunch.com" target="_blank"><img src="data:image/jpeg;base64,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" alt="Shadowrocket"></a>
 <a class="client" href="https://nordvpn.com/" target="_blank"><img src="data:image/png;base64,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" alt="NordVPN"></a>
+<a class="service" href="#" style="cursor:default"><i class="fa fa-ellipsis-h" style="background:#171722"></i>и другие клиенты</a>
 </div>
 </div>
 
 <div class="block">
 <div class="block-title">Тарифы</div>
-<div class="tariff" onclick="selectPlan('start')">
-<div class="tariff-name">🚀 START VPN - 99₽/мес</div>
-<div class="tariff-info">1 устройство</div>
+<div class="tariff">
+<div class="tariff-name">FAST VPN 99₽/мес</div>
+<div class="tariff-info">2 устройства · до 500 мбит</div>
 </div>
-<div class="tariff" onclick="selectPlan('france')">
-<div class="tariff-name">⚡ FAST VPN - 139₽/мес</div>
-<div class="tariff-info">2 устройства</div>
+<div class="tariff">
+<div class="tariff-name">START VPN 139₽/мес</div>
+<div class="tariff-info">1 устройство · до 500 мбит</div>
 </div>
-<div class="tariff" onclick="selectPlan('family')">
-<div class="tariff-name">👨‍👩‍👧‍👦 FAMILY VPN - 249₽/мес</div>
-<div class="tariff-info">5 устройств</div>
+<div class="tariff">
+<div class="tariff-name">FAMILY VPN 249₽/мес</div>
+<div class="tariff-info">5 устройств · до 500 мбит</div>
 </div>
 </div>
 
@@ -275,429 +159,22 @@ body{background:#0a0a0d;min-height:100vh;display:flex;justify-content:center;ali
 </div>
 
 <script>
-// ========== ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ==========
-let userData = {
-    id: null,
-    name: '',
-    balance: 0,
-    subscriptions: []
-};
-
-// ========== ТАРИФЫ ==========
-const VPN_PLANS = {
-    start: {
-        name: "🚀 START VPN",
-        price: 99,
-        limit_ip: 1,
-        description: "1 устройство"
-    },
-    france: {
-        name: "⚡ FAST VPN",
-        price: 139,
-        limit_ip: 2,
-        description: "2 устройства"
-    },
-    family: {
-        name: "👨‍👩‍👧‍👦 FAMILY VPN",
-        price: 249,
-        limit_ip: 5,
-        description: "5 устройств"
-    }
-};
-
-// ========== ПРОМОКОДЫ ==========
-const PROMOCODES = {
-    'RIOT10': 10,
-    'RIOT20': 20,
-    'RIOT50': 50,
-    'RIOT100': 100,
-    'WELCOME': 30,
-    'BONUS': 15,
-    'START': 25
-};
-
-// ========== ИНИЦИАЛИЗАЦИЯ ==========
-if (window.Telegram && Telegram.WebApp) {
-    Telegram.WebApp.ready();
-    Telegram.WebApp.expand();
-    userData.id = Telegram.WebApp.initDataUnsafe?.user?.id || Math.floor(Math.random() * 1000000);
-    userData.name = Telegram.WebApp.initDataUnsafe?.user?.first_name || 'Пользователь';
-} else {
-    userData.id = Math.floor(Math.random() * 1000000);
-    userData.name = 'Тестовый пользователь';
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
 }
-
-loadUserData();
-updateUI();
-
-// ========== ЗАГРУЗКА/СОХРАНЕНИЕ ДАННЫХ ==========
-function loadUserData() {
-    const saved = localStorage.getItem(`vpn_user_${userData.id}`);
-    if (saved) {
-        userData = JSON.parse(saved);
-    } else {
-        userData.subscriptions = [];
-        saveUserData();
-    }
+function openPopup(type){
+document.getElementById("menu").classList.remove("active");
+document.getElementById("popup-"+type).classList.add("active");
 }
-
-function saveUserData() {
-    localStorage.setItem(`vpn_user_${userData.id}`, JSON.stringify(userData));
+function closePopup(){
+document.querySelectorAll(".popup").forEach(p=>p.classList.remove("active"));
 }
-
-// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
-function updateUI() {
-    document.getElementById('mainBalance').textContent = userData.balance;
-    document.getElementById('userName').textContent = userData.name;
-    document.getElementById('userId').textContent = userData.id;
-    document.getElementById('userBalance').textContent = userData.balance;
-    document.getElementById('depositBalance').textContent = userData.balance;
-    document.getElementById('plansBalance').textContent = userData.balance;
-    
-    const activeCount = userData.subscriptions.filter(s => s.is_active && new Date(s.expires_at) > new Date()).length;
-    document.getElementById('activeCount').textContent = activeCount;
+(function(){
+if(window.Telegram&&Telegram.WebApp){
+Telegram.WebApp.ready();
+Telegram.WebApp.expand();
 }
-
-// ========== НАВИГАЦИЯ ==========
-function toggleMenu() {
-    document.getElementById("menu").classList.toggle("active");
-}
-
-function openSection(section) {
-    document.getElementById("menu").classList.remove("active");
-    closePopup();
-    if (section === 'profile') {
-        updateProfileSection();
-        document.getElementById("popup-profile").classList.add("active");
-    } else if (section === 'deposit') {
-        document.getElementById("popup-deposit").classList.add("active");
-    } else if (section === 'plans') {
-        document.getElementById("popup-plans").classList.add("active");
-    } else if (section === 'myVpn') {
-        showSubscriptions();
-        document.getElementById("popup-myVpn").classList.add("active");
-    } else if (section === 'about') {
-        document.getElementById("popup-about").classList.add("active");
-    }
-}
-
-function openPopup(type) {
-    document.getElementById("menu").classList.remove("active");
-    document.getElementById("popup-"+type).classList.add("active");
-}
-
-function closePopup() {
-    document.querySelectorAll(".popup").forEach(p => p.classList.remove("active"));
-    hidePaymentInputs();
-}
-
-function hidePaymentInputs() {
-    document.getElementById('starsInput').style.display = 'none';
-    document.getElementById('promoInput').style.display = 'none';
-    document.getElementById('starsAmount').value = '';
-    document.getElementById('promoCode').value = '';
-}
-
-// ========== ПОПОЛНЕНИЕ БАЛАНСА ==========
-function showStarsInput() {
-    hidePaymentInputs();
-    document.getElementById('starsInput').style.display = 'block';
-}
-
-function showPromoInput() {
-    hidePaymentInputs();
-    document.getElementById('promoInput').style.display = 'block';
-}
-
-function processStarsPayment() {
-    const amount = parseFloat(document.getElementById('starsAmount').value);
-    if (isNaN(amount) || amount < 10) {
-        alert('Минимальная сумма пополнения 10 рублей');
-        return;
-    }
-    
-    const starsAmount = Math.ceil(amount * 100 / 170);
-    const rubAmount = starsAmount * 170 / 100;
-    
-    if (window.Telegram && Telegram.WebApp) {
-        Telegram.WebApp.openInvoice(`stars_${userData.id}_${Date.now()}`, (status) => {
-            if (status === 'paid') {
-                userData.balance += rubAmount;
-                saveUserData();
-                updateUI();
-                alert(`✅ Баланс пополнен на ${rubAmount.toFixed(2)}₽`);
-                closePopup();
-            }
-        });
-    } else {
-        userData.balance += rubAmount;
-        saveUserData();
-        updateUI();
-        alert(`✅ Тестовое пополнение: +${rubAmount.toFixed(2)}₽`);
-        closePopup();
-    }
-}
-
-function activatePromo() {
-    const code = document.getElementById('promoCode').value.toUpperCase().trim();
-    if (!code) {
-        alert('Введите промокод');
-        return;
-    }
-    
-    const bonus = PROMOCODES[code];
-    if (!bonus) {
-        alert('❌ Промокод не найден');
-        return;
-    }
-    
-    userData.balance += bonus;
-    saveUserData();
-    updateUI();
-    alert(`✅ Промокод активирован! +${bonus}₽`);
-    closePopup();
-}
-
-// ========== ПОКУПКА VPN ==========
-function selectPlan(planId) {
-    const plan = VPN_PLANS[planId];
-    if (!plan) return;
-    
-    if (userData.balance < plan.price) {
-        alert(`❌ Недостаточно средств. Нужно: ${plan.price}₽, ваш баланс: ${userData.balance}₽`);
-        return;
-    }
-    
-    userData.balance -= plan.price;
-    
-    const clientId = generateUUID();
-    const expiresAt = new Date();
-    expiresAt.setMonth(expiresAt.getMonth() + 1);
-    
-    const configLink = generateConfigLink(planId, clientId);
-    
-    const subscription = {
-        id: Date.now(),
-        plan_id: planId,
-        client_id: clientId,
-        config_link: configLink,
-        expires_at: expiresAt.toISOString(),
-        is_active: true,
-        created_at: new Date().toISOString()
-    };
-    
-    userData.subscriptions.push(subscription);
-    saveUserData();
-    updateUI();
-    
-    alert(`✅ Тариф ${plan.name} активирован!`);
-    showSubscriptionDetail(subscription.id);
-}
-
-// ========== МОИ VPN ==========
-function showSubscriptions() {
-    const list = document.getElementById('subscriptionsList');
-    if (!userData.subscriptions.length) {
-        list.innerHTML = '<div style="background:#1a1a26;border-radius:20px;padding:20px;text-align:center;color:#9a9acb">📭 У вас нет VPN подключений</div>';
-        return;
-    }
-    
-    let html = '';
-    userData.subscriptions.forEach(sub => {
-        const plan = VPN_PLANS[sub.plan_id] || { name: 'VPN', limit_ip: 1 };
-        const expires = new Date(sub.expires_at);
-        const now = new Date();
-        const isExpired = expires < now;
-        const daysLeft = Math.ceil((expires - now) / (1000 * 60 * 60 * 24));
-        
-        let statusClass = 'status-active';
-        let statusText = 'Активен';
-        
-        if (isExpired) {
-            statusClass = 'status-expired';
-            statusText = 'Истек';
-        } else if (!sub.is_active) {
-            statusClass = 'status-inactive';
-            statusText = 'Выключен';
-        }
-        
-        html += `
-            <div class="tariff" onclick="showSubscriptionDetail(${sub.id})">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                    <div class="tariff-name">${plan.name}</div>
-                    <div class="status-badge ${statusClass}">${statusText}</div>
-                </div>
-                <div class="tariff-info">Устройств: ${plan.limit_ip}</div>
-                <div class="tariff-info">До: ${expires.toLocaleDateString()}</div>
-                ${!isExpired ? `<div class="tariff-info">Осталось дней: ${daysLeft}</div>` : ''}
-            </div>
-        `;
-    });
-    
-    list.innerHTML = html;
-}
-
-function showSubscriptionDetail(subId) {
-    const sub = userData.subscriptions.find(s => s.id === subId);
-    if (!sub) return;
-    
-    const plan = VPN_PLANS[sub.plan_id] || { name: 'VPN', price: 99, limit_ip: 1 };
-    const expires = new Date(sub.expires_at);
-    const now = new Date();
-    const isExpired = expires < now;
-    const daysLeft = Math.ceil((expires - now) / (1000 * 60 * 60 * 24));
-    
-    document.getElementById('subPlanName').textContent = plan.name;
-    
-    let html = `
-        <div style="background:#1a1a26;border-radius:20px;padding:20px;margin-bottom:15px">
-            <div style="margin-bottom:15px">
-                <div style="font-size:14px;color:#9a9acb;margin-bottom:5px">Статус</div>
-                <div class="status-badge ${isExpired ? 'status-expired' : (sub.is_active ? 'status-active' : 'status-inactive')}" style="display:inline-block">
-                    ${isExpired ? 'Истек' : (sub.is_active ? 'Активен' : 'Выключен')}
-                </div>
-            </div>
-            
-            <div style="margin-bottom:15px">
-                <div style="font-size:14px;color:#9a9acb;margin-bottom:5px">Действует до</div>
-                <div>${expires.toLocaleDateString()}</div>
-                ${!isExpired ? `<div style="font-size:12px;color:#9a9acb">Осталось дней: ${daysLeft}</div>` : ''}
-            </div>
-            
-            <div style="margin-bottom:15px">
-                <div style="font-size:14px;color:#9a9acb;margin-bottom:5px">Лимит устройств</div>
-                <div>${plan.limit_ip}</div>
-            </div>
-            
-            <div class="config-link" id="configLink_${sub.id}">${sub.config_link}</div>
-            <button class="btn" onclick="copyConfig(${sub.id})"><i class="fa fa-copy"></i> Копировать ссылку</button>
-        </div>
-    `;
-    
-    if (isExpired) {
-        html += `
-            <button class="btn btn-primary" onclick="renewSubscription(${sub.id})">
-                <i class="fa fa-refresh"></i> Продлить (${plan.price}₽)
-            </button>
-        `;
-    } else {
-        html += `
-            <button class="btn ${sub.is_active ? 'btn-danger' : 'btn-success'}" onclick="toggleSubscription(${sub.id})">
-                <i class="fa ${sub.is_active ? 'fa-power-off' : 'fa-play'}"></i> 
-                ${sub.is_active ? 'Выключить' : 'Включить'}
-            </button>
-        `;
-    }
-    
-    html += `
-        <button class="btn btn-danger" onclick="deleteSubscription(${sub.id})">
-            <i class="fa fa-trash"></i> Удалить VPN
-        </button>
-    `;
-    
-    document.getElementById('subscriptionDetail').innerHTML = html;
-    document.getElementById('popup-myVpn').classList.remove('active');
-    document.getElementById('popup-subscription').classList.add('active');
-}
-
-function copyConfig(subId) {
-    const sub = userData.subscriptions.find(s => s.id === subId);
-    if (!sub) return;
-    
-    navigator.clipboard.writeText(sub.config_link).then(() => {
-        alert('✅ Ссылка скопирована');
-    });
-}
-
-function toggleSubscription(subId) {
-    const sub = userData.subscriptions.find(s => s.id === subId);
-    if (!sub) return;
-    
-    sub.is_active = !sub.is_active;
-    saveUserData();
-    showSubscriptionDetail(subId);
-    showSubscriptions();
-}
-
-function renewSubscription(subId) {
-    const sub = userData.subscriptions.find(s => s.id === subId);
-    if (!sub) return;
-    
-    const plan = VPN_PLANS[sub.plan_id] || { price: 99 };
-    
-    if (userData.balance < plan.price) {
-        alert(`❌ Недостаточно средств. Нужно: ${plan.price}₽`);
-        return;
-    }
-    
-    userData.balance -= plan.price;
-    
-    const expires = new Date();
-    expires.setMonth(expires.getMonth() + 1);
-    sub.expires_at = expires.toISOString();
-    sub.is_active = true;
-    
-    saveUserData();
-    updateUI();
-    showSubscriptionDetail(subId);
-    alert('✅ Подписка продлена');
-}
-
-function deleteSubscription(subId) {
-    if (!confirm('Удалить VPN подключение?')) return;
-    
-    userData.subscriptions = userData.subscriptions.filter(s => s.id !== subId);
-    saveUserData();
-    updateUI();
-    closePopup();
-    openSection('myVpn');
-}
-
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
-function generateUUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
-function generateConfigLink(planId, clientId) {
-    const pbk = 'QbKok-TcojcsMbPBQE3-0c8LskkRfmdBY8_y4j-shiQ';
-    const sni = 'aws.amazon.com';
-    const sid = '92fe62';
-    const port = 41589;
-    
-    return `vless://${clientId}@31.58.76.243:${port}/?type=tcp&encryption=none&security=reality&pbk=${pbk}&fp=chrome&sni=${sni}&sid=${sid}&spx=%2F#${planId.toUpperCase()}`;
-}
-
-function updateProfileSection() {
-    document.getElementById('profileContent').innerHTML = `
-        <div style="background:#1a1a26;border-radius:20px;padding:20px;margin-bottom:15px">
-            <div style="font-size:14px;color:#9a9acb;margin-bottom:10px">Ваш ID: ${userData.id}</div>
-            <div style="font-size:14px;color:#9a9acb;margin-bottom:10px">Имя: ${userData.name}</div>
-            <div style="font-size:24px;font-weight:700;margin-bottom:5px">${userData.balance}₽</div>
-            <div style="color:#9a9acb">Текущий баланс</div>
-        </div>
-        <div style="background:#1a1a26;border-radius:20px;padding:20px">
-            <div style="font-size:14px;color:#9a9acb;margin-bottom:10px">Активных VPN: ${userData.subscriptions.filter(s => s.is_active && new Date(s.expires_at) > new Date()).length}</div>
-        </div>
-    `;
-}
-
-// ========== ПРОВЕРКА ИСТЕКШИХ ПОДПИСОК ==========
-setInterval(() => {
-    let updated = false;
-    userData.subscriptions.forEach(sub => {
-        if (sub.is_active && new Date(sub.expires_at) < new Date()) {
-            sub.is_active = false;
-            updated = true;
-        }
-    });
-    if (updated) {
-        saveUserData();
-        updateUI();
-    }
-}, 60000); // Проверка каждую минуту
+})();
 </script>
 </body>
 </html>
